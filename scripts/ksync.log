@@ -160,3 +160,7 @@ be596aa Add current selection check.
 aab24a8 kconfig: return 'false' instead of 'no' in bool function
 5b61c7b kconfig: fix qconf segfault by deleting heap objects
 6b87b70 unbreak allmodconfig KCONFIG_ALLCONFIG=...
+a466391 kconfig: add unexpected data itself to warning
+3e2ba95 kconfig-language: fix comment on dependency-generated menu structures.
+032a318 kconfig-language: elaborate on the type of a choice
+fa64e5f kconfig/symbol.c: handle choice_values that depend on 'm' symbols
