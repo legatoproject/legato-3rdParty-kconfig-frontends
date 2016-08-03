@@ -461,6 +461,23 @@ AC_SUBST(
     [m4_esyscmd_s([./scripts/version.sh --plain])])
 
 #----------------------------------------
+# Pretty-print the configuration settings
+[fe_list=]
+AS_IF([test "$enable_conf"  = "yes"], [fe_list="$fe_list conf" ])
+AS_IF([test "$enable_gconf" = "yes"], [fe_list="$fe_list gconf"])
+AS_IF([test "$enable_mconf" = "yes"], [fe_list="$fe_list mconf"])
+AS_IF([test "$enable_nconf" = "yes"], [fe_list="$fe_list nconf"])
+AS_IF([test "$enable_qconf" = "yes"], [fe_list="$fe_list qconf"])
+
+[lib_list=]
+AS_IF(
+    [test "$enable_shared" = "yes"],
+    [lib_list="$lib_list shared (version: $KCONFIGPARSER_LIB_VERSION)"])
+AS_IF(
+    [test "$enable_static" = "yes"],
+    [lib_list="$lib_list${lib_list:+,} static"])
+
+#----------------------------------------
 # Finalise
 AC_CONFIG_FILES([
     Makefile
@@ -479,23 +496,6 @@ AC_CONFIG_FILES([
     scripts/Makefile
 ])
 AC_OUTPUT
-
-#----------------------------------------
-# Pretty-print the configuration settings
-[fe_list=]
-AS_IF([test "$enable_conf"  = "yes"], [fe_list="$fe_list conf" ])
-AS_IF([test "$enable_gconf" = "yes"], [fe_list="$fe_list gconf"])
-AS_IF([test "$enable_mconf" = "yes"], [fe_list="$fe_list mconf"])
-AS_IF([test "$enable_nconf" = "yes"], [fe_list="$fe_list nconf"])
-AS_IF([test "$enable_qconf" = "yes"], [fe_list="$fe_list qconf"])
-
-[lib_list=]
-AS_IF(
-    [test "$enable_shared" = "yes"],
-    [lib_list="$lib_list shared (version: $KCONFIGPARSER_LIB_VERSION)"])
-AS_IF(
-    [test "$enable_static" = "yes"],
-    [lib_list="$lib_list${lib_list:+,} static"])
 
 AC_MSG_NOTICE()
 AC_MSG_NOTICE([Configured with:])
