@@ -123,6 +123,13 @@ AC_SUBST([enable_L10n], [${enable_L10n:-yes}])
 # Options to selectively enable/disable frontends
 # All are selected by default
 AC_ARG_ENABLE(
+    [kconfig],
+    [AS_HELP_STRING(
+        [--disable-kconfig],
+        [kconfig, the meta-frontend to all kconfig tools (default=yes)])])
+AC_SUBST([enable_kconfig], [${enable_kconfig:-yes}])
+
+AC_ARG_ENABLE(
     [conf],
     [AS_HELP_STRING(
         [--disable-conf],
@@ -427,6 +434,9 @@ AS_IF(
 #----------------------------------------
 # Setup automake conditional build
 AM_CONDITIONAL(
+    [COND_kconfig],
+    [test "$enable_kconfig" = "yes"])
+AM_CONDITIONAL(
     [COND_conf],
     [test "$enable_conf" = "yes"])
 AM_CONDITIONAL(
@@ -468,6 +478,11 @@ AS_IF([test "$enable_gconf" = "yes"], [fe_list="$fe_list gconf"])
 AS_IF([test "$enable_mconf" = "yes"], [fe_list="$fe_list mconf"])
 AS_IF([test "$enable_nconf" = "yes"], [fe_list="$fe_list nconf"])
 AS_IF([test "$enable_qconf" = "yes"], [fe_list="$fe_list qconf"])
+
+[kcfg_list="$fe_list"]
+AS_IF([test "$enable_utils" = "yes"], [kcfg_list="$kcfg_list diff merge tweak"])
+AS_IF([test "$has_gettext" = "yes"],  [kcfg_list="$kcfg_list gettext"])
+AC_SUBST([kcfg_list], [${kcfg_list}])
 
 [lib_list=]
 AS_IF(
