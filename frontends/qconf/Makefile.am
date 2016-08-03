@@ -1,18 +1,18 @@
-bin_PROGRAMS = qconf
+bin_PROGRAMS = kconfig-qconf
 
-qconf_SOURCES = qconf.cc qconf.h
+kconfig_qconf_SOURCES = qconf.cc qconf.h
 BUILT_SOURCES = qconf.moc
-qconf_CPPFLAGS = $(AM_CPPFLAGS)                 \
-                 $(intl_CPPFLAGS)               \
-                 -I$(top_srcdir)/libs/parser    \
-                 -I$(top_builddir)/libs/images
-qconf_CXXFLAGS = $(AM_CXXFLAGS) \
-                 $(kf_CFLAGS)   \
-                 $(Qt5_CFLAGS) \
-                 -fPIC
-qconf_LDADD = $(top_builddir)/libs/parser/libkconfig-parser.la  \
-              $(top_builddir)/libs/images/libkconfig-images.a   \
-              $(intl_LIBS) $(Qt5_LIBS) $(qconf_EXTRA_LIBS)
+kconfig_qconf_CPPFLAGS = $(AM_CPPFLAGS)                 \
+                         $(intl_CPPFLAGS)               \
+                         -I$(top_srcdir)/libs/parser    \
+                         -I$(top_builddir)/libs/images
+kconfig_qconf_CXXFLAGS = $(AM_CXXFLAGS) \
+                         $(kf_CFLAGS)   \
+                         $(Qt5_CFLAGS)  \
+                         -fPIC
+kconfig_qconf_LDADD = $(top_builddir)/libs/parser/libkconfig-parser.la  \
+                      $(top_builddir)/libs/images/libkconfig-images.a   \
+                      $(intl_LIBS) $(Qt5_LIBS) $(qconf_EXTRA_LIBS)
 CLEANFILES = qconf.moc
 EXTRA_DIST = qconf.cc.patch
 

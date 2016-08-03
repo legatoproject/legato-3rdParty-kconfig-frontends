@@ -8,16 +8,11 @@
 
 .libs/
 
-/frontends/conf/conf
-/frontends/conf/*-conf
-/frontends/gconf/gconf
-/frontends/gconf/*-gconf
-/frontends/mconf/mconf
-/frontends/mconf/*-mconf
-/frontends/nconf/nconf
-/frontends/nconf/*-nconf
-/frontends/qconf/qconf
-/frontends/qconf/*-qconf
+/frontends/conf/kconfig-conf
+/frontends/gconf/kconfig-gconf
+/frontends/mconf/kconfig-mconf
+/frontends/nconf/kconfig-nconf
+/frontends/qconf/kconfig-qconf
 /frontends/qconf/qconf.moc
 
 /libs/images/images.c
@@ -26,9 +21,8 @@
 /libs/parser/lconf.c
 /libs/parser/yconf.c
 
-/utils/tweak
-/utils/gettext
-/utils/*-gettext
+/utils/kconfig-tweak
+/utils/kconfig-gettext
 
 aclocal.m4
 configure

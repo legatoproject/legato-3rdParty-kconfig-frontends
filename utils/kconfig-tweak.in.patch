@@ -1,6 +1,6 @@
-diff --git a/utils/tweak.in b/utils/tweak.in
---- a/utils/tweak.in
-+++ b/utils/tweak.in
+diff --git a/utils/kconfig-tweak.in b/utils/kconfig-tweak.in
+--- a/utils/kconfig-tweak.in
++++ b/utils/kconfig-tweak.in
 @@ -3,8 +3,8 @@
  
  myname=${0##*/}
