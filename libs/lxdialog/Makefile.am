@@ -10,6 +10,6 @@ libkconfig_lxdialog_a_SOURCES = \
     yesno.c
 
 libkconfig_lxdialog_a_CPPFLAGS = $(AM_CPPFLAGS)               \
-                                 ${ncurses_mconf_CPPFLAGS}    \
+                                 $(ncurses_mconf_CPPFLAGS)    \
                                  $(intl_CPPFLAGS)
 liblxdialog_a_CFLAGS = $(AM_CFLAGS) $(kf_CFLAGS)
