@@ -22,7 +22,7 @@ EXTRA_DIST = yconf.y.patch
 
 AM_V_GPERF = $(AM_V_GPERF_$(V))
 AM_V_GPERF_ = $(AM_V_GPERF_$(AM_DEFAULT_VERBOSITY))
-AM_V_GPERF_0 = @echo "  GPERF " $@;
+AM_V_GPERF_0 = @echo "  GPERF   " $@;
 
 .gperf.c:
 	$(AM_V_GPERF)$(GPERF) -t --output-file $@ -a -C -E -g -k 1,3,$$ -p -t $<
