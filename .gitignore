@@ -22,7 +22,9 @@
 
 /libs/images/images.c
 /libs/images/images.h
-/libs/parser/?conf.c
+/libs/parser/hconf.c
+/libs/parser/lconf.c
+/libs/parser/yconf.c
 
 /utils/tweak
 /utils/gettext
