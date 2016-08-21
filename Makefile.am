@@ -4,4 +4,4 @@ if COND_utils
     MAYBE_utils = utils
 endif
 SUBDIRS = docs libs frontends scripts $(MAYBE_utils)
-EXTRA_DIST = bootstrap .version
+EXTRA_DIST = .version
