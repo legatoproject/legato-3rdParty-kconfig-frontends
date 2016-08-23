@@ -504,12 +504,6 @@ AC_CONFIG_FILES([
     libs/images/Makefile
     libs/lxdialog/Makefile
     libs/parser/Makefile
-    frontends/Makefile
-    frontends/conf/Makefile
-    frontends/mconf/Makefile
-    frontends/nconf/Makefile
-    frontends/gconf/Makefile
-    frontends/qconf/Makefile
 ])
 AC_OUTPUT
 
