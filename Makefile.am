@@ -4,6 +4,12 @@ MAKEFLAGS = $(SILENT_MAKEFLAGS)
 SUBDIRS = libs frontends
 EXTRA_DIST = .version
 
+bin_PROGRAMS =
+bin_SCRIPTS =
+dist_bin_SCRIPTS =
+
+CLEAN_FILES =
+
 #===============================================================================
 # Docs
 dist_doc_DATA = \
@@ -11,16 +17,34 @@ dist_doc_DATA = \
 	docs/kconfig.txt
 
 #===============================================================================
+# Frontends
+
+#--------------------------
+# kconfig meta frontend
+if COND_kconfig
+
+bin_SCRIPTS += frontends/kconfig
+
+frontends/kconfig: frontends/kconfig.in
+	$(AM_V_GEN)$(SED) -e 's/@KCFG_LIST@/$(kcfg_list)/g' \
+		$< >$@
+	@chmod +x $@
+
+EXTRA_DIST += frontends/kconfig.in
+
+endif # COND_kconfig
+
+#===============================================================================
 # Utilities
 if COND_utils
 
-bin_SCRIPTS = utils/kconfig-tweak
-dist_bin_SCRIPTS = utils/kconfig-diff utils/kconfig-merge
+bin_SCRIPTS += utils/kconfig-tweak
+dist_bin_SCRIPTS += utils/kconfig-diff utils/kconfig-merge
 
 if COND_utils_gettext
 MAYBE_utils_gettext = utils/kconfig-gettext
 endif
-bin_PROGRAMS = $(MAYBE_utils_gettext)
+bin_PROGRAMS += $(MAYBE_utils_gettext)
 
 utils_kconfig_gettext_SOURCES = utils/gettext.c
 utils_kconfig_gettext_CPPFLAGS = \
@@ -33,7 +57,7 @@ utils_kconfig_gettext_LDADD = \
 	$(top_builddir)/libs/parser/libkconfig-parser.la \
 	$(intl_LIBS)
 
-CLEAN_FILES = utils/kconfig-tweak
+CLEAN_FILES += utils/kconfig-tweak
 EXTRA_DIST += \
 	utils/kconfig-tweak.in \
 	utils/kconfig-tweak.in.patch
