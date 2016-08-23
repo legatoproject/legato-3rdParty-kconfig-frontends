@@ -500,10 +500,6 @@ AS_IF(
 # Finalise
 AC_CONFIG_FILES([
     Makefile
-    libs/Makefile
-    libs/images/Makefile
-    libs/lxdialog/Makefile
-    libs/parser/Makefile
 ])
 AC_OUTPUT
 

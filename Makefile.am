@@ -1,12 +1,14 @@
 ACLOCAL_AMFLAGS = -I scripts/.autostuff/m4
 MAKEFLAGS = $(SILENT_MAKEFLAGS)
 
-SUBDIRS = libs
 EXTRA_DIST = .version
 
 bin_PROGRAMS =
 bin_SCRIPTS =
 dist_bin_SCRIPTS =
+
+lib_LTLIBRARIES =
+noinst_LIBRARIES =
 
 CLEAN_FILES =
 BUILT_SOURCES =
@@ -16,6 +18,121 @@ BUILT_SOURCES =
 dist_doc_DATA = \
 	docs/kconfig-language.txt \
 	docs/kconfig.txt
+
+#===============================================================================
+# Libraries
+
+SUFFIXES = .gperf
+
+lib_LTLIBRARIES += libs/parser/libkconfig-parser.la
+libs_parser_libkconfig_parser_la_SOURCES = libs/parser/yconf.y
+dist_EXTRA_libs_parser_libkconfig_parser_la_SOURCES = \
+	libs/parser/hconf.gperf \
+	libs/parser/lconf.l \
+	libs/parser/confdata.c \
+	libs/parser/menu.c \
+	libs/parser/symbol.c \
+	libs/parser/util.c \
+	libs/parser/expr.c \
+	libs/parser/expr.h \
+	libs/parser/lkc.h \
+	libs/parser/lkc_proto.h
+libs_parser_libkconfig_parser_la_CPPFLAGS = \
+	-DROOTMENU="\"$(root_menu)\"" \
+	-DCONFIG_=\"$(config_prefix)\" \
+	$(intl_CPPFLAGS)
+libs_parser_libkconfig_parser_la_CFLAGS = \
+	$(AM_CFLAGS) \
+	$(kf_CFLAGS)
+libs_parser_libkconfig_parser_la_LDFLAGS = \
+	-release $(KCONFIGPARSER_LIB_VERSION) \
+	-no-undefined
+libs_parser_libkconfig_parser_la_LIBADD = $(intl_LIBS)
+
+libs_parser_kconfig_includedir = $(includedir)/kconfig
+libs_parser_kconfig_include_HEADERS = \
+	libs/parser/list.h \
+	libs/parser/lkc.h \
+	libs/parser/expr.h \
+	libs/parser/lkc_proto.h
+
+AM_V_GPERF = $(AM_V_GPERF_$(V))
+AM_V_GPERF_ = $(AM_V_GPERF_$(AM_DEFAULT_VERBOSITY))
+AM_V_GPERF_0 = @echo "  GPERF   " $@;
+
+.gperf.c:
+	$(AM_V_GPERF)$(GPERF) -t --output-file $@ -a -C -E -g -k 1,3,$$ -p -t $<
+
+# The following rule produces a warning:
+#   libs/parser/Makefile.am:41: user target `.l.c' defined here...
+#   /usr/share/automake-1.11/am/lex.am: ... overrides Automake target
+#   `.l.c' defined here
+#
+# This is expected, and can't be avoided (for now).
+# That's because, when working with lex+yacc sources, the default is to
+# build each files searately, and then link them together into the final
+# output. But the Linux kernel's parser simply #include-s the lexer,
+# so we can't put lconf.l into the _SOURCES (it's in EXTRA_SOURCES),
+# and thus automake does not catch the need to call lex.
+# Secondly, when flex is told to change the symbols' prefix (kconfig
+# uses zconf in lieue of the original yy), then the output file is
+# also renamed, but automake does not now that, and make would fail
+# because it would think no file was generated.
+.l.c:
+	$(AM_V_LEX)$(LEXCOMPILE) -o$@ $<
+
+BUILT_SOURCES += libs/parser/hconf.c libs/parser/lconf.c
+CLEAN_FILES += libs/parser/hconf.c libs/parser/lconf.c libs/parser/yconf.c
+EXTRA_DIST += libs/parser/yconf.y.patch
+
+#--------------------------
+# lxdialog lib (for mconf)
+if COND_lxdialog
+
+noinst_LIBRARIES += libs/lxdialog/libkconfig-lxdialog.a
+
+libs_lxdialog_libkconfig_lxdialog_a_SOURCES = \
+	libs/lxdialog/checklist.c \
+	libs/lxdialog/dialog.h \
+	libs/lxdialog/inputbox.c \
+	libs/lxdialog/menubox.c \
+	libs/lxdialog/textbox.c \
+	libs/lxdialog/util.c \
+	libs/lxdialog/yesno.c
+libs_lxdialog_libkconfig_lxdialog_a_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
+	$(ncurses_mconf_CPPFLAGS) \
+	$(intl_CPPFLAGS)
+libs_lxdialog_liblxdialog_a_CFLAGS = \
+	$(AM_CFLAGS) \
+	$(kf_CFLAGS)
+
+endif # COND_lxdialog
+
+#--------------------------
+# kconfig meta frontend
+if COND_images
+
+noinst_LIBRARIES += libs/images/libkconfig-images.a
+
+libs_images_libkconfig_images_a_SOURCES = libs/images/images.c_orig
+nodist_libs_images_libkconfig_images_a_SOURCES = libs/images/images.c
+
+libs/images/images.c: libs/images/images.c_orig
+	$(AM_V_GEN)$(SED) -e 's/^static //' $< >$@
+
+libs/images/images.h: libs/images/images.c_orig
+	$(AM_V_GEN)$(SED) -e '/^static \(const char \*xpm_\(.\{1,\}\)\[\]\) = {/!d; s//extern \1;/' \
+		$< >$@
+
+BUILT_SOURCES += \
+	libs/images/images.c \
+	libs/images/images.h
+CLEAN_FILES += \
+	libs/images/images.c \
+	libs/images/images.h
+
+endif # COND_images
 
 #===============================================================================
 # Frontends
