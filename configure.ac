@@ -20,7 +20,7 @@ AC_CONFIG_MACRO_DIR([scripts/.autostuff/m4])
 #----------------------------------------
 # Prepare automake
 
-AM_INIT_AUTOMAKE([foreign])
+AM_INIT_AUTOMAKE([foreign subdir-objects])
 
 # For releases, enable silent rules, unless the user explicitly
 # disables them.
@@ -511,7 +511,6 @@ AC_CONFIG_FILES([
     frontends/nconf/Makefile
     frontends/gconf/Makefile
     frontends/qconf/Makefile
-    utils/Makefile
     scripts/Makefile
 ])
 AC_OUTPUT

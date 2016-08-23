@@ -38,6 +38,7 @@ stamp-h1
 .deps/
 /autom4te.cache/
 /scripts/.autostuff
+.dirstamp
 
 kconfig-frontends-*.tar*
 kconfig-frontends-*.shar*
