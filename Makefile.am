@@ -1,7 +1,7 @@
 ACLOCAL_AMFLAGS = -I scripts/.autostuff/m4
 MAKEFLAGS = $(SILENT_MAKEFLAGS)
 
-SUBDIRS = docs libs frontends scripts
+SUBDIRS = docs libs frontends
 EXTRA_DIST = .version
 
 #===============================================================================
@@ -38,3 +38,10 @@ utils/kconfig-tweak: utils/kconfig-tweak.in
 	@chmod +x $@
 
 endif # COND_utils
+
+#===============================================================================
+# Misc. scripts
+EXTRA_DIST += \
+	scripts/ksync.sh \
+	scripts/ksync.list \
+	scripts/version.sh

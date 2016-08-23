@@ -511,7 +511,6 @@ AC_CONFIG_FILES([
     frontends/nconf/Makefile
     frontends/gconf/Makefile
     frontends/qconf/Makefile
-    scripts/Makefile
 ])
 AC_OUTPUT
 
