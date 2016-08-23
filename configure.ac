@@ -478,11 +478,15 @@ AS_IF([test "$enable_gconf" = "yes"], [fe_list="$fe_list gconf"])
 AS_IF([test "$enable_mconf" = "yes"], [fe_list="$fe_list mconf"])
 AS_IF([test "$enable_nconf" = "yes"], [fe_list="$fe_list nconf"])
 AS_IF([test "$enable_qconf" = "yes"], [fe_list="$fe_list qconf"])
+# The meta frontend is handled separatly, below, because we do not
+# want it in the list of tools, kcfg_list.
 
 [kcfg_list="$fe_list"]
 AS_IF([test "$enable_utils" = "yes"], [kcfg_list="$kcfg_list diff merge tweak"])
 AS_IF([test "$has_gettext" = "yes"],  [kcfg_list="$kcfg_list gettext"])
 AC_SUBST([kcfg_list], [${kcfg_list}])
+
+AS_IF([test "$enable_kconfig" = "yes"], [fe_list=" kconfig$fe_list"])
 
 [lib_list=]
 AS_IF(
