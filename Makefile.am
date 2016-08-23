@@ -1,8 +1,14 @@
 ACLOCAL_AMFLAGS = -I scripts/.autostuff/m4
 MAKEFLAGS = $(SILENT_MAKEFLAGS)
 
-SUBDIRS = docs libs frontends
+SUBDIRS = libs frontends
 EXTRA_DIST = .version
+
+#===============================================================================
+# Docs
+dist_doc_DATA = \
+	docs/kconfig-language.txt \
+	docs/kconfig.txt
 
 #===============================================================================
 # Utilities

@@ -500,7 +500,6 @@ AS_IF(
 # Finalise
 AC_CONFIG_FILES([
     Makefile
-    docs/Makefile
     libs/Makefile
     libs/images/Makefile
     libs/lxdialog/Makefile
