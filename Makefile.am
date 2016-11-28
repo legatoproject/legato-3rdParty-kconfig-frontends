@@ -10,7 +10,7 @@ dist_bin_SCRIPTS =
 lib_LTLIBRARIES =
 noinst_LIBRARIES =
 
-CLEAN_FILES =
+CLEANFILES =
 BUILT_SOURCES =
 
 #===============================================================================
@@ -82,7 +82,7 @@ AM_V_GPERF_0 = @echo "  GPERF   " $@;
 	$(AM_V_LEX)$(LEXCOMPILE) -o$@ $<
 
 BUILT_SOURCES += libs/parser/hconf.c libs/parser/lconf.c
-CLEAN_FILES += libs/parser/hconf.c libs/parser/lconf.c libs/parser/yconf.c
+CLEANFILES += libs/parser/hconf.c libs/parser/lconf.c libs/parser/yconf.c
 EXTRA_DIST += libs/parser/yconf.y.patch
 
 #--------------------------
@@ -128,7 +128,7 @@ libs/images/images.h: libs/images/images.c_orig
 BUILT_SOURCES += \
 	libs/images/images.c \
 	libs/images/images.h
-CLEAN_FILES += \
+CLEANFILES += \
 	libs/images/images.c \
 	libs/images/images.h
 
@@ -285,7 +285,7 @@ AM_V_MOC_0 = @echo "  MOC     " $@;
 .h.moc:
 	$(AM_V_MOC)$(MOC) -i $< -o $@
 
-CLEAN_FILES += frontends/qconf/qconf.moc
+CLEANFILES += frontends/qconf/qconf.moc
 EXTRA_DIST += frontends/qconf/qconf.cc.patch
 
 endif # COND_qconf
@@ -313,7 +313,7 @@ utils_kconfig_gettext_LDADD = \
 	$(top_builddir)/libs/parser/libkconfig-parser.la \
 	$(intl_LIBS)
 
-CLEAN_FILES += utils/kconfig-tweak
+CLEANFILES += utils/kconfig-tweak
 EXTRA_DIST += \
 	utils/kconfig-tweak.in \
 	utils/kconfig-tweak.in.patch
