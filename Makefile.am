@@ -43,7 +43,8 @@ dist_EXTRA_libs_parser_libkconfig_parser_la_SOURCES = \
 libs_parser_libkconfig_parser_la_CPPFLAGS = \
 	-DROOTMENU="\"$(root_menu)\"" \
 	-DCONFIG_=\"$(config_prefix)\" \
-	$(intl_CPPFLAGS)
+	$(intl_CPPFLAGS) \
+	-I$(top_srcdir)/libs/parser
 libs_parser_libkconfig_parser_la_CFLAGS = \
 	$(AM_CFLAGS) \
 	$(kf_CFLAGS)
@@ -277,7 +278,8 @@ frontends_qconf_kconfig_qconf_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
 	$(intl_CPPFLAGS) \
 	-I$(top_srcdir)/libs/parser \
-	-I$(top_builddir)/libs/images
+	-I$(top_builddir)/libs/images \
+	-I$(top_builddir)/frontends/qconf
 frontends_qconf_kconfig_qconf_CXXFLAGS = \
 	$(AM_CXXFLAGS) \
 	$(kf_CFLAGS) \
