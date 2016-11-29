@@ -67,8 +67,8 @@ AM_V_GPERF_1 =
 .gperf.c:
 	$(AM_V_GPERF)$(GPERF) -t --output-file $@ -a -C -E -g -k 1,3,$$ -p -t $<
 
-# The following rule produces a warning:
-#   libs/parser/Makefile.am:41: user target `.l.c' defined here...
+# The following rule may produce a warning with some versions of automake:
+#   Makefile.am:85: user target `.l.c' defined here...
 #   /usr/share/automake-1.11/am/lex.am: ... overrides Automake target
 #   `.l.c' defined here
 #
