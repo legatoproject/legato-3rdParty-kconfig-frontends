@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 my_name="${0##*/}"
 
