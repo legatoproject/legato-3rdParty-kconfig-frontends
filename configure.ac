@@ -31,12 +31,6 @@ AS_IF(
     [AM_SILENT_RULES],
     [AM_SILENT_RULES([yes])])
 
-AS_IF(
-    [test $AM_DEFAULT_VERBOSITY -eq 0],
-    [SILENT_MAKEFLAGS="--no-print-directory -s"],
-    [SILENT_MAKEFLAGS=""])
-AC_SUBST([SILENT_MAKEFLAGS])
-
 #----------------------------------------
 # Prepare libtool
 m4_ifdef([AM_PROG_AR], [AM_PROG_AR]) dnl Automake, we have a problem...

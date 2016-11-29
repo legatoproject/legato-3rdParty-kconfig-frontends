@@ -1,5 +1,8 @@
 ACLOCAL_AMFLAGS = -I scripts/.autostuff/m4
-MAKEFLAGS = $(SILENT_MAKEFLAGS)
+MAKEFLAGS = $(SILENT_MAKEFLAGS_$(V))
+SILENT_MAKEFLAGS_ = $(SILENT_MAKEFLAGS_$(AM_DEFAULT_VERBOSITY))
+SILENT_MAKEFLAGS_0 = --no-print-directory -s
+SILENT_MAKEFLAGS_1 =
 
 EXTRA_DIST = .version
 
@@ -59,6 +62,7 @@ libs_parser_kconfig_include_HEADERS = \
 AM_V_GPERF = $(AM_V_GPERF_$(V))
 AM_V_GPERF_ = $(AM_V_GPERF_$(AM_DEFAULT_VERBOSITY))
 AM_V_GPERF_0 = @echo "  GPERF   " $@;
+AM_V_GPERF_1 =
 
 .gperf.c:
 	$(AM_V_GPERF)$(GPERF) -t --output-file $@ -a -C -E -g -k 1,3,$$ -p -t $<
@@ -287,6 +291,7 @@ frontends_qconf_kconfig_qconf_LDADD = \
 AM_V_MOC = $(AM_V_MOC_$(V))
 AM_V_MOC_ = $(AM_V_MOC_$(AM_DEFAULT_VERBOSITY))
 AM_V_MOC_0 = @echo "  MOC     " $@;
+AM_V_MOC_1 =
 
 .h.moc:
 	$(AM_V_MOC)$(MOC) -i $< -o $@
