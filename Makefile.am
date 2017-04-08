@@ -43,6 +43,7 @@ dist_EXTRA_libs_parser_libkconfig_parser_la_SOURCES = \
 libs_parser_libkconfig_parser_la_CPPFLAGS = \
 	-DROOTMENU="\"$(root_menu)\"" \
 	-DCONFIG_=\"$(config_prefix)\" \
+	-DGPERF_LEN_TYPE="$(GPERF_LEN_TYPE)" \
 	$(intl_CPPFLAGS) \
 	-I$(top_srcdir)/libs/parser
 libs_parser_libkconfig_parser_la_CFLAGS = \
