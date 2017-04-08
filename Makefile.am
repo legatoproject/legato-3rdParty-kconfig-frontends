@@ -45,7 +45,8 @@ libs_parser_libkconfig_parser_la_CPPFLAGS = \
 	-DCONFIG_=\"$(config_prefix)\" \
 	-DGPERF_LEN_TYPE="$(GPERF_LEN_TYPE)" \
 	$(intl_CPPFLAGS) \
-	-I$(top_srcdir)/libs/parser
+	-I$(top_srcdir)/libs/parser \
+	-I$(top_builddir)/libs/parser
 libs_parser_libkconfig_parser_la_CFLAGS = \
 	$(AM_CFLAGS) \
 	$(kf_CFLAGS)
