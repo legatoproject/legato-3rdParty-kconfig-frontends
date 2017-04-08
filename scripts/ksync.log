@@ -165,3 +165,8 @@ a466391 kconfig: add unexpected data itself to warning
 032a318 kconfig-language: elaborate on the type of a choice
 fa64e5f kconfig/symbol.c: handle choice_values that depend on 'm' symbols
 cfd7c612 kconfig-language: improve menuconfig usage description
+237e3ad Kconfig: Introduce the "imply" keyword
+0eb4734 Scripts: kconfig: nconf: fix _GNU_SOURCE redefined warning
+79e51b5 kconfig/nconf: Fix hang when editing symbol with a long prompt
+e039303 xconfig: fix 'Show Debug' functionality
+83c3a1b xconfig: fix missing suboption and help panels on first run
