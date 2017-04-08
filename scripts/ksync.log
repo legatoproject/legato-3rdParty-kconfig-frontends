@@ -164,3 +164,4 @@ a466391 kconfig: add unexpected data itself to warning
 3e2ba95 kconfig-language: fix comment on dependency-generated menu structures.
 032a318 kconfig-language: elaborate on the type of a choice
 fa64e5f kconfig/symbol.c: handle choice_values that depend on 'm' symbols
+cfd7c612 kconfig-language: improve menuconfig usage description
