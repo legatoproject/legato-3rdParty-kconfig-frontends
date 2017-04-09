@@ -89,8 +89,13 @@ AM_V_GPERF_1 =
 .l.c:
 	$(AM_V_LEX)$(LEXCOMPILE) -o$@ $<
 
-BUILT_SOURCES += libs/parser/hconf.c libs/parser/lconf.c
-CLEANFILES += libs/parser/hconf.c libs/parser/lconf.c libs/parser/yconf.c
+BUILT_SOURCES += \
+	libs/parser/hconf.c \
+	libs/parser/lconf.c
+CLEANFILES += \
+	libs/parser/hconf.c \
+	libs/parser/lconf.c \
+	libs/parser/yconf.c
 EXTRA_DIST += \
 	libs/parser/hconf.c \
 	libs/parser/hconf.gperf.patch \
