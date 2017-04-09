@@ -15,6 +15,7 @@ noinst_LIBRARIES =
 
 CLEANFILES =
 DISTCLEANFILES =
+MAINTAINERCLEANFILES =
 BUILT_SOURCES =
 
 #===============================================================================
@@ -96,7 +97,7 @@ BUILT_SOURCES += \
 	libs/parser/lconf.c
 # Still, .c files generated from .y files are not cleaned by default,
 # so yconf.c must be explicitly listed:
-CLEANFILES += \
+MAINTAINERCLEANFILES += \
 	libs/parser/hconf.c \
 	libs/parser/lconf.c \
 	libs/parser/yconf.c
