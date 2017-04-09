@@ -89,9 +89,13 @@ AM_V_GPERF_1 =
 .l.c:
 	$(AM_V_LEX)$(LEXCOMPILE) -o$@ $<
 
+# yconf.c not listed, because it is the real _SOURCES, but others are
+# in _EXTRA_SOURCES (above), so must be listed:
 BUILT_SOURCES += \
 	libs/parser/hconf.c \
 	libs/parser/lconf.c
+# Still, .c files generated from .y files are not cleaned by default,
+# so yconf.c must be explicitly listed:
 CLEANFILES += \
 	libs/parser/hconf.c \
 	libs/parser/lconf.c \
