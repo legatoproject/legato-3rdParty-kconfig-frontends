@@ -170,3 +170,4 @@ cfd7c612 kconfig-language: improve menuconfig usage description
 79e51b5 kconfig/nconf: Fix hang when editing symbol with a long prompt
 e039303 xconfig: fix 'Show Debug' functionality
 83c3a1b xconfig: fix missing suboption and help panels on first run
+9be3213 gconfig: remove misleading parentheses around a condition
