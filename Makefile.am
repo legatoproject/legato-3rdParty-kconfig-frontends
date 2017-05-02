@@ -300,7 +300,7 @@ frontends_qconf_kconfig_qconf_CXXFLAGS = \
 	$(AM_CXXFLAGS) \
 	$(kf_CFLAGS) \
 	$(Qt5_CFLAGS) \
-	-fPIC
+	-fPIC -std=c++11
 frontends_qconf_kconfig_qconf_LDADD = \
 	$(top_builddir)/libs/parser/libkconfig-parser.la \
 	$(top_builddir)/libs/images/libkconfig-images.a \
