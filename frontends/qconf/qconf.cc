@@ -318,7 +318,7 @@ ConfigList::ConfigList(ConfigView* p, const char *name)
 	  showName(false), showRange(false), showData(false), mode(singleMode), optMode(normalOpt),
 	  rootEntry(0), headerPopup(0)
 {
-	int i;
+	int i __attribute__((unused));
 
 	setObjectName(name);
 	setSortingEnabled(false);
