@@ -348,6 +348,7 @@ EXTRA_DIST += \
 	utils/kconfig-tweak.in.patch
 
 utils/kconfig-tweak: utils/kconfig-tweak.in
+	$(MKDIR_P) $(@D)
 	$(AM_V_GEN)$(SED) -e "s/@CONFIG_@/$(config_prefix)/g" \
 		$< >$@
 	@chmod +x $@
