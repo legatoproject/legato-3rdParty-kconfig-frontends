@@ -171,6 +171,7 @@ if COND_kconfig
 bin_SCRIPTS += frontends/kconfig
 
 frontends/kconfig: frontends/kconfig.in
+	$(MKDIR_P) $(@D)
 	$(AM_V_GEN)$(SED) -e 's/@KCFG_LIST@/$(kcfg_list)/g' \
 		$< >$@
 	@chmod +x $@
