@@ -155,9 +155,11 @@ libs_images_libkconfig_images_a_SOURCES = libs/images/images.c_orig
 nodist_libs_images_libkconfig_images_a_SOURCES = libs/images/images.c
 
 libs/images/images.c: libs/images/images.c_orig
+	$(MKDIR_P) $(@D)
 	$(AM_V_GEN)$(SED) -e 's/^static //' $< >$@
 
 libs/images/images.h: libs/images/images.c_orig
+	$(MKDIR_P) $(@D)
 	$(AM_V_GEN)$(SED) -e '/^static \(const char \*xpm_\(.\{1,\}\)\[\]\) = {/!d; s//extern \1;/' \
 		$< >$@
 
