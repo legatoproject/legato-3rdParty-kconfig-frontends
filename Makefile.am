@@ -69,7 +69,11 @@ AM_V_GPERF_ = $(AM_V_GPERF_$(AM_DEFAULT_VERBOSITY))
 AM_V_GPERF_0 = @echo "  GPERF   " $@;
 AM_V_GPERF_1 =
 
+# In theory, the destination directory already exists, because there is at
+# least the .pc file created by configure, but better safe than sorry, so
+# we create the directory now.
 .gperf.c:
+	$(MKDIR_P) $(@D)
 	$(AM_V_GPERF)$(GPERF) -t --output-file $@ -a -C -E -g -k 1,3,$$ -p -t $<
 
 # The following rule may produce a warning with some versions of automake:
@@ -87,7 +91,12 @@ AM_V_GPERF_1 =
 # uses zconf in lieue of the original yy), then the output file is
 # also renamed, but automake does not now that, and make would fail
 # because it would think no file was generated.
+#
+# In theory, the destination directory already exists, because there is at
+# least the .pc file created by configure, but better safe than sorry, so
+# we create the directory now.
 .l.c:
+	$(MKDIR_P) $(@D)
 	$(AM_V_LEX)$(LEXCOMPILE) -o$@ $<
 
 # yconf.c not listed, because it is the real _SOURCES, but others are
